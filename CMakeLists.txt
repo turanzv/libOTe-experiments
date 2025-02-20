@@ -3,6 +3,12 @@ project(OTExperiments)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Create libOTe build directory
+set(LIBOTE_BUILD_DIR ${CMAKE_BINARY_DIR}/libOTe-build)
+file(MAKE_DIRECTORY ${LIBOTE_BUILD_DIR})
+set(OC_THIRDPARTY_CLONE_DIR ${CMAKE_BINARY_DIR}/libOTe/out)
+file(MAKE_DIRECTORY ${OC_THIRDPARTY_CLONE_DIR})
+
 # Mirror libOTe build settings
 set(ENABLE_ALL_OT ON CACHE BOOL "")
 set(ENABLE_BOOST ON CACHE BOOL "")
@@ -19,7 +25,7 @@ set(FETCH_COPROTO ON CACHE BOOL "")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Build libOTe in its own directory
-add_subdirectory(${CMAKE_SOURCE_DIR}/libOTe libOTe-build)
+add_subdirectory(${CMAKE_SOURCE_DIR}/libOTe ${LIBOTE_BUILD_DIR})
 
 # Include directories
 include_directories(${CMAKE_SOURCE_DIR}/libOTe)
